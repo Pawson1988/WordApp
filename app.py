@@ -3,7 +3,6 @@ from flask_session import Session
 from flask_sqlalchemy import SQLAlchemy
 from helpers.translation_request import translate_word
 from helpers.date_and_time import get_date
-from middleware.login_func import is_logged_in
 
 app = Flask(__name__)
 
