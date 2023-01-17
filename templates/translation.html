@@ -1,0 +1,30 @@
+{% extends "layout.html" %}
+
+{% block body %}
+
+<div class="container translation-container">
+    <form class="py-4 m-5" id="translate_form" action="/get_translation" method="post">
+        <label class="form-label" for="word_to_translate">Phrase or Word</label>
+    <input class="form-control mb-5" type="text" id="word_to_translate" name="word_to_translate">
+    <label class="form-label" for="lang">Language</label>
+    <select class="form-control mb-5" name="lang" id="lang">
+        <option value="ES">Spanish</option>
+        <option value="PT-BR">Brazilian Portuguese</option>
+        <option value="EN-GB">English</option>
+    </select>
+    <button class="btn btn-success translate-button">Translate</button>
+
+    
+</form>
+
+
+{% if translation %}
+
+<div class="mb-5 border py-5 px-5 rounded" id="translated_text">{{translation}}</div>
+
+<button class="btn btn-success copy_btn">Copy to Clipboard</button>
+
+{% endif %}
+
+</div>
+{% endblock %}

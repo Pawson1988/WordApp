@@ -1,0 +1,32 @@
+{% extends "layout.html" %}
+
+
+
+{% block body %} 
+    
+    
+    
+    <form class="add-word-form" action="/add_word" method="post">
+        <h1>Add a New Word</h1>
+        <label for="new_word">Your New Word</label>
+        <input class="el new_word" autofocus type="text" name="new_word" id="new_word" placeholder="New Word">
+
+       
+        
+        <label for="part_of_speech">Type of Word</label>
+        <select class="el" name="part_of_speech" id="part_of_speech" placeholder="What part of speech is your word?" required>
+           <option value="verb">verb</option>
+           <option value="adjective">adjective</option>
+           <option value="adverb">adverb</option>
+           <option value="noun">noun</option>
+           <option value="pronoun">pronoun</option>
+        </select>
+        <label for="translation">Translation</label>
+        <input class="el" type="text" name="translation" id="translation" placeholder="What is the translation?">
+        <label for="sentence">Phrase with the Word</label>
+        <textarea class="el" name="sentence" id="sentence" cols="30" rows="10" placeholder="Type an example phrase using the word here"></textarea>
+        <button class="btn btn-success" type="submit">submit</button>
+
+    </form>
+    <div style="height: 20vh;"></div>
+{% endblock %}

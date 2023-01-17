@@ -1,0 +1,10 @@
+{% extends "layout.html" %}
+
+{% block body %}
+
+{% for word in words %}
+<h2>Timestamp: {{word.timestamp}}</h2>
+<h1>Word: {{word.word}}, User: {{word.user_id}}, Part of Speech: {{word.part_of_speech}}, Translation: {{word.translation}}</h1>
+{% endfor %}
+
+{% endblock %}

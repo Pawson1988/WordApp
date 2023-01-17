@@ -1,0 +1,32 @@
+{% extends "layout.html" %}
+
+{% block body %}
+
+   
+    
+ <div class="words-container"> 
+    <div class="words-title-div">
+        <h1 class="mb-5">Your words</h1>
+    </div>
+    <div class="words-words-div">
+    {% for word in words %}
+        <div class="card-multiple card text-white bg-primary m-3" style="width: 13rem; max-width: 18rem;">
+            <div class="card-header">{{word.word.capitalize()}}</div>
+            <div class="card-body">
+              <p class="card-text"><span>Translation:</span>  {{word.translation.capitalize()}}</p>
+              <p class="card-text"><span>Type:</span> {{word.part_of_speech.capitalize()}}</p>
+              <p class="card-text"><span>Phrase:</span>  {{word.sentence.capitalize()}}
+              </p>
+            </div>
+            <form class="d-flex align-items-end justify-content-center mb-3" action="delete_word/{{word.id}}" method="DELETE">
+                <button class=" btn btn-success">Delete</button>
+            </form>
+          </div>
+    {% endfor %}
+    </div>
+    
+ </div>
+
+
+
+{% endblock %}

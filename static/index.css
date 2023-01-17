@@ -1,0 +1,68 @@
+body {
+    background: rgb(63,63,239);
+    background: linear-gradient(112deg, rgba(63,63,239,1) 16%, rgba(0,212,255,1) 53%); 
+    color: white;
+    height: 100vh;
+}
+
+.navbar {
+    opacity: 0.9;
+}
+
+.words-container {
+    padding: 2rem;
+    height: fit-content;
+    width: 90vw;
+    display: flex;
+    flex-wrap: wrap;
+    flex-direction: column;
+}
+
+.word_div {
+    background-color: beige;
+    height: fit-content;
+    border: black 1px solid;
+    width: 12rem;
+    padding: 1rem;
+    margin-bottom: 0.5rem;
+    margin-right: 0.5rem;
+}
+
+.card-header {
+    font-size: 2rem;
+}
+
+.card:hover {
+    background-color: rgb(81, 81, 228) !important;
+}
+
+.words-words-div {
+    display: flex;
+    flex-direction: row;
+}
+
+span {
+    color: coral;
+    font-size: large;
+    font-weight: 600;
+}
+
+.add-word-form {
+    display: flex;
+    flex-direction: column;
+    align-items: center;
+    justify-content: center;
+}
+
+.add-word-form .el {
+    margin-top: 0.5rem;
+    margin-bottom: 1.5rem;
+}
+
+.add-word-form h1 {
+    margin-bottom: 3rem;
+}
+
+.translation-container {
+    width: 50vw;
+}
