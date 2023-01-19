@@ -8,7 +8,7 @@
     <div class="words-title-div">
         <h1 class="mb-5">Your words</h1>
     </div>
-    <div class="words-words-div">
+    <div class="words-words-div d-flex flex-wrap">
     {% for word in words %}
         <div class="card-multiple card text-white bg-primary m-3" style="width: 13rem; max-width: 18rem;">
             <div class="card-header">{{word.word.capitalize()}}</div>
