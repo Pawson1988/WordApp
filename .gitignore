@@ -1,3 +1,6 @@
 flask_session/
 instance/
 .env 
+__pycache__
+helpers.__pycache__
+words_app.__pycache__
