@@ -2,7 +2,7 @@ from flask import Flask, render_template, request, redirect, session
 from flask_session import Session 
 from flask_sqlalchemy import SQLAlchemy
 from helpers.translation_request import translate_word
-from helpers.date_and_time import get_date
+from helpers.date_and_time import get_date, get_time
 
 app = Flask(__name__)
 
@@ -86,6 +86,8 @@ with app.app_context():
 
 @app.before_request
 def is_logged_in():
+    session['date'] = get_date()
+    session['time'] = get_time()
     if request.endpoint != "login" and request.endpoint != "static":
      if not session.get('username'):
         return redirect('/login')
@@ -165,7 +167,7 @@ def add_word():
 
     # get words from HTML form. 
     if request.method == "POST":
-        timestamp = get_date()
+        timestamp = "%s - %s" % (get_date(), get_time())
         new_word = request.form.get("new_word")
         user_id = session['id']
         part_of_speech = request.form.get("part_of_speech")
