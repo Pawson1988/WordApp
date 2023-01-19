@@ -7,6 +7,9 @@ class User(db.Model):
     username = db.Column(db.String(20))
     password = db.Column(db.String(20))
 
+    def __repr__(self):
+        return f'username: {self.username}'
+
 # Create the model for the DB
 class Word(db.Model):
     id = db.Column(db.Integer, primary_key=True)
@@ -16,6 +19,9 @@ class Word(db.Model):
     part_of_speech = db.Column(db.String, nullable=False)
     translation = db.Column(db.String(40))
     sentence = db.Column(db.String(150))
+
+    def __repr__(self):
+        return f'id: {self.id} - word: {self.word} - Date and time created: {self.timestamp}'
 
 
 # Add create_all() to app context and add the above models to the database

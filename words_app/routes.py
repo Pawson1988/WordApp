@@ -1,4 +1,4 @@
-from words_app import app
+from words_app import app, db
 from words_app.models import User, Word
 from flask import render_template, request, redirect, session
 
@@ -10,11 +10,16 @@ from helpers.date_and_time import get_date, get_time
 
 @app.before_request
 def is_logged_in():
+    # save date and time in each request to show in nav bar
     session['date'] = get_date()
     session['time'] = get_time()
+    
     if request.endpoint != "login" and request.endpoint != "static":
-     if not session.get('username'):
-        return redirect('/login')
+        # if url is not login
+        # save previous url in session to redirect ack to the same page after login 
+        session['url'] = request.url
+        if not session.get('username'):
+            return redirect('/login')
 
      
 
@@ -52,14 +57,13 @@ def login():
         username = request.form.get("username")
         password = request.form.get("password")
         current_user = User.query.filter_by(username = username).first()
-        print(current_user.username)
 
         if username == current_user.username and password == current_user.password:
             session.permanent = True
             session['username'] = username
             session['date'] = get_date()
             session['id'] = current_user.user_id 
-            return redirect("/show_words")
+            return redirect(session['url'])
         else:
             return redirect("/login")
 
