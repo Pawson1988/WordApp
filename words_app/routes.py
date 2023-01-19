@@ -30,7 +30,7 @@ def get_translation():
         text = request.form.get("word_to_translate")
         lang = request.form.get("lang")
         translated = translate_word(text, lang)
-    return render_template("/translation.html", translation = translated)
+    return render_template("/translation.html", translation = translated, original_text = text)
 
     
 
@@ -61,7 +61,6 @@ def login():
         if username == current_user.username and password == current_user.password:
             session.permanent = True
             session['username'] = username
-            session['date'] = get_date()
             session['id'] = current_user.user_id 
             return redirect(session['url'])
         else:
