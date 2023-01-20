@@ -5,7 +5,7 @@
    
     
  <div class="words-container"> 
-    <div class="words-title-div">
+  <div class="words-title-div">
         <h1 class="mb-5">Your words</h1>
     </div>
     <div class="words-words-div d-flex flex-wrap">
@@ -21,12 +21,14 @@
             <form class="d-flex align-items-end justify-content-center mb-3" action="delete_word/{{word.id}}" method="DELETE">
                 <button class=" btn btn-success">Delete</button>
             </form>
-          </div>
+        </div>
     {% endfor %}
-    </div>
+  </div>
     
  </div>
 
+ <div class="chosen_words mb-5" style="font-size: 3rem;"></div>
+  <button class="btn btn-info clear_words_btn">Reset</button>
 
 
 {% endblock %}

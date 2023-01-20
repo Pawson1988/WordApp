@@ -25,6 +25,7 @@ def is_logged_in():
 
 @app.route("/get_translation", methods=['GET','POST'])
 def get_translation():
+    text = "No Text"
     translated = "No translation"
     if request.method == 'POST':
         text = request.form.get("word_to_translate")
@@ -72,7 +73,7 @@ def logout():
     session.pop('username', None)
     return redirect("/login")
 
-# First route to show the form
+# First route to show words or login
 @app.route("/")
 def hello():
     return redirect("/show_words")
@@ -80,7 +81,6 @@ def hello():
 # Route to show words from database
 @app.route("/show_words")
 def show_words():
-
     words = Word.query.filter_by(user_id = session['id']).all()
     print(words)
     return render_template("show_words.html", words = words)
