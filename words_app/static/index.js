@@ -43,7 +43,7 @@ for(let card of cards){
 }
 
 clear_words_button.addEventListener("click", () => {
-    chosen_words.textContent = ""
+    chosen_words.textContent = "No Words"
     for(let card of cards){
         resetCardPositions(card)
     }
