@@ -1,4 +1,5 @@
 import copyToClipboard from "./copy_to_clipboard.js"
+import resetCardPositions from "./reset_card_positions.js"
 
 
 
@@ -14,20 +15,13 @@ if(window.location.pathname === "/get_translation"){
 
 const cards = document.querySelectorAll(".card-multiple")
 const chosen_words = document.querySelector(".chosen_words")
-const card_header = document.querySelectorAll(".card-header")
 const clear_words_button = document.querySelector(".clear_words_btn")
 
-console.log(cards)
 
-function resetCardPositions(card){
-    card.style.postion = "relative"
-    card.style.top = "0"
-    card.style.zIndex = "0"
-}
 
-let index = 0
+
 for(let card of cards){
-    index++
+    
     card.addEventListener("click", () => {
         if(card.style.top != "10rem"){
            console.log(card)
