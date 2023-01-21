@@ -41,7 +41,18 @@ body {
     flex-direction: row;
 }
 
+.sentence-container {
+    margin: 0;
+    margin-left: 2rem;
+}
 
+.sentence {
+    font-size: 3rem;
+    background-color: rgba(98, 172, 112, 0.4);
+    border: none;
+    border-bottom: 2px solid white;
+    outline: none;
+}
 
 span {
     color: coral;
