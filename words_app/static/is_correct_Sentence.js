@@ -12,7 +12,7 @@ export default function is_correct_Sentence(str) {
 
     // If the last character is not a full stop(.)
     // no need to check further.
-    if (str[len - 1] !== ".") return false;
+    // if (str[len - 1] !== ".") return false;
 
     // Maintain 2 states. Previous and current state
     // based on which vertex state you are.
@@ -45,7 +45,7 @@ export default function is_correct_Sentence(str) {
         curr_state = 2;
     // If current state is a dot(.).
     // Set current state as 3.
-    else if (str[index] === ".") curr_state = 3;
+    else if (str[index] === "." || str[index] === "?" || str[index] === "!") curr_state = 3;
 
     // Validates all current state with previous state
     // for the rules in the description of the problem.
