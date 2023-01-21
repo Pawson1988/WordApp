@@ -43,7 +43,7 @@ export default function is_correct_Sentence(str) {
         str[index].charCodeAt(0) <= "z".charCodeAt(0)
     )
         curr_state = 2;
-    // If current state is a dot(.).
+    // If current state is a dot(., ?, !).
     // Set current state as 3.
     else if (str[index] === "." || str[index] === "?" || str[index] === "!") curr_state = 3;
 
