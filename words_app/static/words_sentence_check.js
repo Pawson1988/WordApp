@@ -13,6 +13,19 @@ const check_btn = document.querySelector(".check_sentence")
 // Initialise array for selected words from word list to use later
 let selectedWords = []
 
+function addWordToChosenWords(array){
+    while (chosen_words.firstChild) {
+        chosen_words.removeChild(chosen_words.lastChild);
+    }
+
+    for(let item in array){
+        let wordDiv = document.createElement("div")
+        wordDiv.textContent = array[item]
+        wordDiv.setAttribute("class", "word-div")
+        chosen_words.appendChild(wordDiv)
+    }
+}
+
 function stringifyArray(array){
     let string = ""
     for(let item of array){
@@ -38,6 +51,7 @@ for(let card of cards){
             chosen_words.style.marginTop = "5rem"
         } else {
             resetCardPositions(card)
+            console.log(selectedWords)
             let index = selectedWords.indexOf(card.childNodes[1].textContent)
             console.log(index)
             if(index > -1){
@@ -45,12 +59,14 @@ for(let card of cards){
             }
             
         }
-        let string = stringifyArray(selectedWords)
-        chosen_words.textContent = string
-        if(selectedWords.length === 0){
-            chosen_words.textContent = ""
-            chosen_words.style.marginTop = "0"
-        }     
+        addWordToChosenWords(selectedWords)
+        console.log(selectedWords)
+        // let string = stringifyArray(selectedWords)
+        // chosen_words.textContent = string
+        // if(selectedWords.length === 0){
+        //     chosen_words.textContent = ""
+        //     chosen_words.style.marginTop = "0"
+        // }     
     })
 }
 
