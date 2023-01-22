@@ -14,4 +14,27 @@ if(window.location.pathname === "/get_translation"){
 
 wordsSentenceCheck()
 
+const wordFromCard = document.querySelectorAll(".card-header")
+
+let wordDef;
+
+function getWordDefinition(word){
+    fetch(`https://api.dictionaryapi.dev/api/v2/entries/en/${word}`)
+    .then((response) => response.json())
+    .then((data) => {
+        wordDef = data
+        console.log(wordDef[0].phonetics[0].text)
+    })
+    .catch((err) => console.log(err));
+
+    
+}
+
+for(let word of wordFromCard){
+    word.addEventListener("click", function(e){
+        e.stopImmediatePropagation()
+        getWordDefinition(word.textContent)
+    })
+}
+
 

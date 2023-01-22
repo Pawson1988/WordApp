@@ -3,7 +3,7 @@
 {% block body %}
 
    
-    
+<div class="container-fluid">
  <div class="words-container"> 
   <div class="words-title-div">
         <h1 class="mb-5">Your words</h1>
@@ -19,19 +19,19 @@
               </p>
             </div>
             <form class="d-flex align-items-end justify-content-center mb-3" action="delete_word/{{word.id}}" method="DELETE">
-                <button class=" btn btn-success">Delete</button>
+                <button class="btn btn-success">Delete</button>
             </form>
         </div>
     {% endfor %}
   </div>
-    
+     
  </div>
   <div class="container sentence-container"> 
-    <div class="chosen_words mb-5" style="font-size: 1.5rem;"></div>
+    <div class="chosen_words mb-5"></div>
     <p>Write a sentence and then check to see if it contains all of the words you chose.</p>
     <textarea class="sentence" name="sentence" id="sentence" cols="60" rows="1"></textarea>
     <button class="mt-3 btn btn-success check_sentence">Check</button>
     <button class="mt-3 btn btn-danger clear_words_btn">Reset</button>
   </div>
-  
+</div>
 {% endblock %}
