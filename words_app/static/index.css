@@ -18,7 +18,25 @@ body {
     flex-direction: column;
 }
 
-.word_div {
+.chosen_words {
+    display: flex;
+    flex-direction: row; 
+}
+
+.word-div {
+    background: rgb(0,255,226);
+    background: linear-gradient(112deg, rgb(25, 176, 236) 24%, rgb(47, 196, 237) 68%);
+    color: coral;
+    text-align: center;
+    font-family: Helvetica, Arial, sans-serif;
+    font-weight: 600;
+    width:10rem;
+    border-radius: 0.7rem;
+    padding: 1.5rem;
+    margin-right: 0.5rem;
+}
+
+/* .word_div {
     background-color: beige;
     height: fit-content;
     border: black 1px solid;
@@ -26,7 +44,7 @@ body {
     padding: 1rem;
     margin-bottom: 0.5rem;
     margin-right: 0.5rem;
-}
+} */
 
 .card-header {
     font-size: 2rem;
