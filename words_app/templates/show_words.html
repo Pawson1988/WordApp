@@ -9,6 +9,7 @@
         <h1 class="mb-5">Your words</h1>
     </div>
     <div class="words-words-div d-flex flex-wrap">
+     
     {% for word in words %}
         <div class="card-multiple card text-white bg-primary m-3" style="width: 13rem; max-width: 18rem;">
             <div class="card-header text-center">{{word.word.capitalize()}}</div>
@@ -27,6 +28,11 @@
      
  </div>
   <div class="container sentence-container"> 
+    <div style="display: block;">
+      <div class="definitionDiv"></div>
+      <div class="pronunciationDiv"></div>
+      <div class="synonymDiv"></div>
+   </div>
     <div class="chosen_words mb-5"></div>
     <p>Write a sentence and then check to see if it contains all of the words you chose.</p>
     <textarea class="sentence" name="sentence" id="sentence" cols="60" rows="1"></textarea>

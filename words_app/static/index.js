@@ -15,8 +15,17 @@ if(window.location.pathname === "/get_translation"){
 wordsSentenceCheck()
 
 const wordFromCard = document.querySelectorAll(".card-header")
+const definitionDiv = document.querySelector(".definitionDiv")
+const pronunciationDiv = document.querySelector(".pronunciationDiv")
+const synonymDiv = document.querySelector(".synonymDiv")
 
 let wordDef;
+
+function showDefinitionAndPhonetics(wordDef){
+    definitionDiv.textContent = `Definition: ${wordDef[0].meanings[0].definitions[0].definition}`
+    pronunciationDiv.textContent = `Pronunciation: ${wordDef[0].phonetic}`
+    synonymDiv.textContent = `Synonym(s): ${wordDef[0].meanings[0].definitions[0].synonyms}`
+}
 
 function getWordDefinition(word){
     fetch(`https://api.dictionaryapi.dev/api/v2/entries/en/${word}`)
@@ -24,6 +33,7 @@ function getWordDefinition(word){
     .then((data) => {
         wordDef = data
         console.log(wordDef[0].phonetics[0].text)
+        showDefinitionAndPhonetics(wordDef)
     })
     .catch((err) => console.log(err));
 
