@@ -30,7 +30,6 @@ function addWordToChosenWords(array){
 for(let card of cards){
     card.addEventListener("click", () => {
         if(card.style.top != "5rem"){
-            console.log(card)
             selectedWords.push(card.childNodes[1].textContent)
             card.style.position = "relative"
             card.style.top = "5rem"
@@ -38,7 +37,6 @@ for(let card of cards){
             chosen_words.style.marginTop = "5rem"
         } else {
             resetCardPositions(card)
-            console.log(selectedWords)
             let index = selectedWords.indexOf(card.childNodes[1].textContent)
             if(index > -1){
                 selectedWords.splice(index, 1)   
@@ -62,6 +60,7 @@ clear_words_button.addEventListener("click", () => {
         selectedWords = []
         sentence.value = ""
         sentence.style.backgroundColor = "rgba(98, 172, 112, 0.4)"
+        addWordToChosenWords(selectedWords)
     }
 })
 
