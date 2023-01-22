@@ -19,6 +19,8 @@ const definitionDiv = document.querySelector(".definitionDiv")
 const pronunciationDiv = document.querySelector(".pronunciationDiv")
 const synonymDiv = document.querySelector(".synonymDiv")
 
+
+
 let wordDef;
 
 function showDefinitionAndPhonetics(wordDef){
@@ -46,5 +48,5 @@ for(let word of wordFromCard){
         getWordDefinition(word.textContent)
     })
 }
-
-
+// export the dictionry information divs so that we can clear the div with the reset buttion from words_sentence_check.js
+export {definitionDiv, pronunciationDiv, synonymDiv}
