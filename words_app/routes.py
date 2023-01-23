@@ -14,7 +14,7 @@ def is_logged_in():
     session['date'] = get_date()
     session['time'] = get_time()
     
-    if request.endpoint != "login" and request.endpoint != "static":
+    if request.endpoint != "login" and request.endpoint != "static" and request.endpoint != "favicon.ico":
         # if url is not login
         # save previous url in session to redirect ack to the same page after login 
         session['url'] = request.url

@@ -46,13 +46,20 @@ function getWordDefinition(word){
     
 }
 
+function removeAllBgColors(elements){
+    for(let element of elements){
+        element.style.removeProperty("background-color")
+    }
+}
 
 let clicked
 for(let word of wordFromCard){
     word.addEventListener("click", function(e){
         e.stopImmediatePropagation()
+        removeAllBgColors(wordFromCard)
         if(clicked != true){
             clicked = true
+            word.style.backgroundColor = "rgb(0, 204, 255)"
             getWordDefinition(word.textContent)
         } else {
             clicked = false
