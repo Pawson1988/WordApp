@@ -11,6 +11,7 @@ if(window.location.pathname === "/get_translation"){
     copyBtn.addEventListener("click", function(){
         copyToClipboard(translatedTextEl)
 })}
+// end of /get_translation code
 
 wordsSentenceCheck()
 
@@ -19,7 +20,11 @@ const definitionDiv = document.querySelector(".definitionDiv")
 const pronunciationDiv = document.querySelector(".pronunciationDiv")
 const synonymDiv = document.querySelector(".synonymDiv")
 
-
+function resetWordInfoDivs(){
+        definitionDiv.textContent = ""
+        pronunciationDiv.textContent = ""
+        synonymDiv.textContent = ""
+}
 
 let wordDef;
 
@@ -34,7 +39,6 @@ function getWordDefinition(word){
     .then((response) => response.json())
     .then((data) => {
         wordDef = data
-        console.log(wordDef[0].phonetics[0].text)
         showDefinitionAndPhonetics(wordDef)
     })
     .catch((err) => console.log(err));
@@ -42,11 +46,19 @@ function getWordDefinition(word){
     
 }
 
+
+let clicked
 for(let word of wordFromCard){
     word.addEventListener("click", function(e){
         e.stopImmediatePropagation()
-        getWordDefinition(word.textContent)
+        if(clicked != true){
+            clicked = true
+            getWordDefinition(word.textContent)
+        } else {
+            clicked = false
+            resetWordInfoDivs()
+        }
     })
 }
 // export the dictionry information divs so that we can clear the div with the reset buttion from words_sentence_check.js
-export {definitionDiv, pronunciationDiv, synonymDiv}
+export {resetWordInfoDivs}

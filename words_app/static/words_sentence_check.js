@@ -1,6 +1,6 @@
 import resetCardPositions from "./reset_card_positions.js"
 import is_correct_Sentence from "./is_correct_Sentence.js"
-import {definitionDiv, pronunciationDiv, synonymDiv} from "./index.js"
+import {resetWordInfoDivs} from "./index.js"
 
 export default function wordsSentenceCheck(){
 
@@ -58,9 +58,7 @@ sentence.addEventListener("keyup", () => {
 clear_words_button.addEventListener("click", () => {
     for(let card of cards){
         resetCardPositions(card)
-        definitionDiv.textContent = ""
-        pronunciationDiv.textContent = ""
-        synonymDiv.textContent = ""
+        resetWordInfoDivs()
         selectedWords = []
         sentence.value = ""
         sentence.style.backgroundColor = "rgba(98, 172, 112, 0.4)"
