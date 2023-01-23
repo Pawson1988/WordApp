@@ -12,7 +12,10 @@ export default function is_correct_Sentence(str) {
 
     // If the last character is not a full stop(.)
     // no need to check further.
-    // if (str[len - 1] !== ".") return false;
+    const lastIndex = str[len - 1]
+    if(lastIndex !== "." && lastIndex !== "?" && lastIndex !== "!"){
+        return false;
+    } 
 
     // Maintain 2 states. Previous and current state
     // based on which vertex state you are.
@@ -25,6 +28,7 @@ export default function is_correct_Sentence(str) {
 
     // Loop to go over the string.
     while (index <= str.length) {
+    
     // Set states according to the input characters
     // in the string and the rule defined in the description.
     // If current character is [A-Z]. Set current state as 0.
