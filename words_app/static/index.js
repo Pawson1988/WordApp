@@ -26,7 +26,13 @@ function resetWordInfoDivs(){
         synonymDiv.textContent = ""
 }
 
-let wordDef;
+function removeAllBgColors(elements){
+    for(let element of elements){
+        element.style.removeProperty("background-color")
+    }
+}
+
+let wordDef; // Declare variable to save the information from the dictionary API function getWordDefinition()
 
 function showDefinitionAndPhonetics(wordDef){
     definitionDiv.textContent = `Definition: ${wordDef[0].meanings[0].definitions[0].definition}`
@@ -42,15 +48,9 @@ function getWordDefinition(word){
         showDefinitionAndPhonetics(wordDef)
     })
     .catch((err) => console.log(err));
-
-    
 }
 
-function removeAllBgColors(elements){
-    for(let element of elements){
-        element.style.removeProperty("background-color")
-    }
-}
+
 
 let clicked
 for(let word of wordFromCard){

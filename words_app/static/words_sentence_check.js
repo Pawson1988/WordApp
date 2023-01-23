@@ -5,76 +5,78 @@ import {resetWordInfoDivs} from "./index.js"
 export default function wordsSentenceCheck(){
 
 // Get the elements from the DOM tree
-const cards = document.querySelectorAll(".card-multiple")
-const chosen_words = document.querySelector(".chosen_words")
-const clear_words_button = document.querySelector(".clear_words_btn")
-const sentence = document.querySelector(".sentence")
-const check_btn = document.querySelector(".check_sentence")
+    const cards = document.querySelectorAll(".card-multiple")
+    const chosen_words = document.querySelector(".chosen_words")
+    const clear_words_button = document.querySelector(".clear_words_btn")
+    const sentence = document.querySelector(".sentence")
+    const check_btn = document.querySelector(".check_sentence")
+    const wordInfoDiv = document.querySelector(".word-info-div")
 
 // Initialise array for selected words from word list to use later
-let selectedWords = []
+    let selectedWords = []
 
-function addWordToChosenWords(array){
-    while (chosen_words.firstChild) {
-        chosen_words.removeChild(chosen_words.lastChild);
-    }
+    function addWordToChosenWords(array){
+        while (chosen_words.firstChild) {
+            chosen_words.removeChild(chosen_words.lastChild);
+        }
 
-    for(let item in array){
-        let wordDiv = document.createElement("div")
-        wordDiv.textContent = array[item]
-        wordDiv.setAttribute("class", "word-div")
-        chosen_words.appendChild(wordDiv)
+        for(let item in array){
+            let wordDiv = document.createElement("div")
+            wordDiv.textContent = array[item]
+            wordDiv.setAttribute("class", "word-div")
+            chosen_words.appendChild(wordDiv)
+        }
     }
-}
 
 // function for when user is selecting cards
-for(let card of cards){
-    card.addEventListener("click", () => {
-        if(card.style.top != "5rem"){
-            selectedWords.push(card.childNodes[1].textContent)
-            card.style.position = "relative"
-            card.style.top = "5rem"
-            card.style.zIndex++  
-            chosen_words.style.marginTop = "5rem"
-        } else {
-            resetCardPositions(card)
-            let index = selectedWords.indexOf(card.childNodes[1].textContent)
-            if(index > -1){
-                selectedWords.splice(index, 1)   
+    for(let card of cards){
+        card.addEventListener("click", () => {
+            if(card.style.top != "5rem"){
+                selectedWords.push(card.childNodes[1].textContent)
+                card.style.position = "relative"
+                card.style.top = "5rem"
+                card.style.zIndex++  
+                chosen_words.style.marginTop = "5rem"
+                wordInfoDiv.style.marginTop = "5rem"
+            } else {
+                resetCardPositions(card)
+                let index = selectedWords.indexOf(card.childNodes[1].textContent)
+                if(index > -1){
+                    selectedWords.splice(index, 1)   
+                }
+                
             }
-            
-        }
-        addWordToChosenWords(selectedWords)
-    })
-}
-
-sentence.addEventListener("keyup", () => {
-    if(sentence.value === ""){
-        sentence.style.backgroundColor = "rgba(98, 172, 112, 0.4)"
+            addWordToChosenWords(selectedWords)
+        })
     }
-})
+
+    sentence.addEventListener("keyup", () => {
+        if(sentence.value === ""){
+            sentence.style.backgroundColor = "rgba(98, 172, 112, 0.4)"
+        }
+    })
 
 // reset everything function
-clear_words_button.addEventListener("click", () => {
-    for(let card of cards){
-        resetCardPositions(card)
-        resetWordInfoDivs()
-        selectedWords = []
-        sentence.value = ""
-        sentence.style.backgroundColor = "rgba(98, 172, 112, 0.4)"
-        addWordToChosenWords(selectedWords)
-    }
-})
+    clear_words_button.addEventListener("click", () => {
+        for(let card of cards){
+            resetCardPositions(card)
+            resetWordInfoDivs()
+            selectedWords = []
+            sentence.value = ""
+            sentence.style.backgroundColor = "rgba(98, 172, 112, 0.4)"
+            addWordToChosenWords(selectedWords)
+        }
+    })
 
 // check whether the sentence the user inputted contains the words they selected and is a good gramatical sentence. 
-check_btn.addEventListener("click", () => {
-    if(sentence.value){
-        let isEvery = selectedWords.every(item => sentence.value.toLowerCase().includes(item.toLowerCase()))
-        if(isEvery && is_correct_Sentence(sentence.value)){
-            sentence.style.backgroundColor = "green"
-        } else {
-            sentence.style.backgroundColor = "red"
+    check_btn.addEventListener("click", () => {
+        if(sentence.value){
+            let isEvery = selectedWords.every(item => sentence.value.toLowerCase().includes(item.toLowerCase()))
+            if(isEvery && is_correct_Sentence(sentence.value)){
+                sentence.style.backgroundColor = "green"
+            } else {
+                sentence.style.backgroundColor = "red"
+            }
         }
-    }
-})
+    })
 }
