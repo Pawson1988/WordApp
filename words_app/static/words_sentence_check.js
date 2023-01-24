@@ -1,6 +1,6 @@
 import resetCardPositions from "./reset_card_positions.js"
 import is_correct_Sentence from "./is_correct_Sentence.js"
-import {resetWordInfoDivs} from "./index.js"
+import { WordInfo } from "./wordInfo.js"
 
 export default function wordsSentenceCheck(){
 
@@ -20,6 +20,7 @@ export default function wordsSentenceCheck(){
             chosen_words.removeChild(chosen_words.lastChild);
         }
 
+        // loop through and create the elements on the dom depending on how many items are in the chosen_words array
         for(let item in array){
             let wordDiv = document.createElement("div")
             wordDiv.textContent = array[item]
@@ -28,7 +29,7 @@ export default function wordsSentenceCheck(){
         }
     }
 
-// function for when user is selecting cards
+// function for when user is selecting cards, moving the card 5rem down and back up again, moving divs below out of the way so they don't overlap. 
     for(let card of cards){
         card.addEventListener("click", () => {
             if(card.style.top != "5rem"){
@@ -50,6 +51,7 @@ export default function wordsSentenceCheck(){
         })
     }
 
+    // to reset background colour when nothing in text box
     sentence.addEventListener("keyup", () => {
         if(sentence.value === ""){
             sentence.style.backgroundColor = "rgba(98, 172, 112, 0.4)"
@@ -60,7 +62,7 @@ export default function wordsSentenceCheck(){
     clear_words_button.addEventListener("click", () => {
         for(let card of cards){
             resetCardPositions(card)
-            resetWordInfoDivs()
+            WordInfo.resetWordInfoDivs()
             selectedWords = []
             sentence.value = ""
             sentence.style.backgroundColor = "rgba(98, 172, 112, 0.4)"
