@@ -1,7 +1,8 @@
 from words_app import app, db
 from words_app.models import User, Word
 from flask import render_template, request, redirect, session
-
+import time
+import asyncio
 from helpers.translation_request import translate_word
 from helpers.date_and_time import get_date, get_time
 
@@ -117,3 +118,15 @@ def delete_word(id):
     db.session.commit()
     print(id)
     return redirect("/show_words")
+
+@app.route("/word_translation", methods=["POST"])
+def word_translation():
+    translated_word = "translated_word"
+    if request.method == "POST":
+        print(request.form)
+        if request.form.get("hidden_word"):
+            word_to_translate = request.form.get("hidden_word")
+            translated_word = translate_word(word_to_translate, "ES")
+            return render_template("add_word.html", translated_word = translated_word)
+        return "please type a word to translate"
+    

@@ -13,9 +13,20 @@ if(window.location.pathname === "/get_translation"){
 // end of /get_translation code
 
 // check sentence for grammar
-wordsSentenceCheck()
+if(window.location.pathname === "/show_words"){
+    wordsSentenceCheck()
 
 // toggle word info when car-header is clicked
 WordInfo.toggleWordInfo()
+}
 
+
+const hiddenWordInput = document.querySelector(".hidden_word")
+const newWordInput = document.querySelector(".new_word")
+
+console.log(hiddenWordInput, newWordInput)
+
+newWordInput.addEventListener("change", function(e){
+    hiddenWordInput.value = newWordInput.value
+})
 
