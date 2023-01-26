@@ -4,29 +4,60 @@
 
 {% block body %} 
     
+    <!-- Hidden form to translate word without affecting the rest of the form, see JS -->
     <form id="word_translation" action="/word_translation" method="post">
         <input hidden class="hidden_word" type="text" name="hidden_word" id="hidden_word" value="">
+        <input hidden class="hidden_sentence" type="text" name="hidden_sentence" id="hidden_sentence" value="">
+        <input hidden class="hidden_part_of_speech" type="text" name="hidden_part_of_speech" id="hidden_part_of_speech" value="">
     </form>
     
+    <!-- main form for adding word -->
     <form class="add-word-form" action="/add_word" method="post">
         <h1>Add a New Word</h1>
+
+        <!-- new word section -->
         <label for="new_word">Your New Word</label>
-        <input class="p-1 el new_word" autofocus type="text" name="new_word" id="new_word" placeholder="New Word" value="{{original_word}}">
+        {% if word_info and word_info.word_to_translate %}
+        <input class="p-1 el new_word" autofocus type="text" name="new_word" id="new_word" placeholder="New Word" value="{{word_info.word_to_translate}}">
+        {% else %}
+        <input class="p-1 el new_word" autofocus type="text" name="new_word" id="new_word" placeholder="New Word">
+        {% endif %}
             
+            <!-- translation button -->
             <button class="p-3 word_translation_button btn btn-success" form="word_translation">Translate Word</button>
 
+        <!-- part of speech section -->
         <label for="part_of_speech">Type of Word</label>
-        <select class="p-1 el" name="part_of_speech" id="part_of_speech" placeholder="What part of speech is your word?" required>
+        <select class="p-1 el part_of_speech" name="part_of_speech" id="part_of_speech" placeholder="What part of speech is your word?" required value="
+        {% if word_info %}
+        {{word_info.part_of_speech}}
+        {% endif %}">
            <option value="verb">verb</option>
            <option value="adjective">adjective</option>
            <option value="adverb">adverb</option>
            <option value="noun">noun</option>
            <option value="pronoun">pronoun</option>
         </select>
+
+        <!-- Word translation section -->
         <label for="translation">Translation</label>
-        <input class="p-1 el" type="text" name="translation" id="translation" placeholder="What is the translation?" value="{{translated_word}}">
+        {% if word_info and word_info.translated_word %}
+        <input class="p-1 el" type="text" name="translation" id="translation" placeholder="What is the translation?" value="{{word_info.translated_word}}">
+        {% else %}
+        <input class="p-1 el" type="text" name="translation" id="translation" placeholder="What is the translation?">
+        {% endif %}
+
+        <!-- example sentence section -->
         <label for="sentence">Phrase with the Word</label>
-        <textarea class="p-1 el" name="sentence" id="sentence" cols="30" rows="10" placeholder="Type an example phrase using the word here"></textarea>
+        {% if word_info %}
+        <textarea class="p-1 el add_word_sentence" name="sentence" id="sentence" cols="30" rows="10" placeholder="Type an example phrase using the word here">{{word_info.sentence}}
+        </textarea> 
+        {% else %}
+        <textarea class="p-1 el add_word_sentence" name="sentence" id="sentence" cols="30" rows="10" placeholder="Type an example phrase using the word here">
+        </textarea> 
+        {% endif %}
+        
+        <!-- Submit button to add word to dictionary -->
         <button class="btn btn-success" type="submit">submit</button>
 
     </form>

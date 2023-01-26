@@ -122,11 +122,15 @@ def delete_word(id):
 @app.route("/word_translation", methods=["POST"])
 def word_translation():
     translated_word = "translated_word"
+    word_info = {}
     if request.method == "POST":
         print(request.form)
         if request.form.get("hidden_word"):
-            word_to_translate = request.form.get("hidden_word")
-            translated_word = translate_word(word_to_translate, "ES")
-            return render_template("add_word.html", translated_word = translated_word, original_word = word_to_translate)
+            word_info["part_of_speech"] = request.form.get("hidden_part_of_speech")
+            word_info["sentence"] = request.form.get("hidden_sentence")
+            print(word_info["sentence"])
+            word_info["word_to_translate"] = request.form.get("hidden_word")
+            word_info["translated_word"] = translate_word(word_info["word_to_translate"], "ES")
+            return render_template("add_word.html", word_info = word_info)
         return redirect("add_word")
     

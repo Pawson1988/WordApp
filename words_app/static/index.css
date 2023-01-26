@@ -83,6 +83,7 @@ span {
 .add-word-form .el {
     margin-top: 0.5rem;
     margin-bottom: 1.5rem;
+    text-align: left;
 }
 
 .add-word-form h1 {

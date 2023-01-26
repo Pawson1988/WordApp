@@ -23,10 +23,24 @@ if(window.location.pathname === "/show_words"){
 
 
 if(window.location.pathname === "/add_word" || window.location.pathname === "/word_translation"){
-    const hiddenWordInput = document.querySelector(".hidden_word")
-    const newWordInput = document.querySelector(".new_word")
 
-    newWordInput.addEventListener("change", function(e){
-        hiddenWordInput.value = newWordInput.value
+    const hiddenWordInput = document.querySelector(".hidden_word")
+    const hiddenSentence = document.querySelector(".hidden_sentence")
+    const hiddenPartOfSpeech = document.querySelector(".hidden_part_of_speech")
+
+    const newWordInput = document.querySelector(".new_word")
+    const partOfSpeech = document.querySelector(".part_of_speech")
+    const addWordSentence = document.querySelector(".add_word_sentence")
+
+    newWordInput.addEventListener("input", function(e){
+        hiddenWordInput.value = newWordInput.value.trim()
+    })
+
+    partOfSpeech.addEventListener("change", function(e){
+        hiddenPartOfSpeech.value = partOfSpeech.value
+    })
+
+    addWordSentence.addEventListener("input", function(e){
+        hiddenSentence.value = addWordSentence.value
     })
 }
