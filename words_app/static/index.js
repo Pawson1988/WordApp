@@ -17,16 +17,16 @@ if(window.location.pathname === "/show_words"){
     wordsSentenceCheck()
 
 // toggle word info when car-header is clicked
-WordInfo.toggleWordInfo()
+    WordInfo.toggleWordInfo()
 }
 
 
-const hiddenWordInput = document.querySelector(".hidden_word")
-const newWordInput = document.querySelector(".new_word")
 
-console.log(hiddenWordInput, newWordInput)
+if(window.location.pathname === "/add_word" || window.location.pathname === "/word_translation"){
+    const hiddenWordInput = document.querySelector(".hidden_word")
+    const newWordInput = document.querySelector(".new_word")
 
-newWordInput.addEventListener("change", function(e){
-    hiddenWordInput.value = newWordInput.value
-})
-
+    newWordInput.addEventListener("change", function(e){
+        hiddenWordInput.value = newWordInput.value
+    })
+}

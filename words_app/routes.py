@@ -127,6 +127,6 @@ def word_translation():
         if request.form.get("hidden_word"):
             word_to_translate = request.form.get("hidden_word")
             translated_word = translate_word(word_to_translate, "ES")
-            return render_template("add_word.html", translated_word = translated_word)
-        return "please type a word to translate"
+            return render_template("add_word.html", translated_word = translated_word, original_word = word_to_translate)
+        return redirect("add_word")
     

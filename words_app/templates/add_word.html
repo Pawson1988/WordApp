@@ -4,16 +4,17 @@
 
 {% block body %} 
     
-    <form action="/word_translation" method="post">
+    <form id="word_translation" action="/word_translation" method="post">
         <input hidden class="hidden_word" type="text" name="hidden_word" id="hidden_word" value="">
-        <button class="word_translation_button btn btn-success">Translate Word</button> 
     </form>
     
     <form class="add-word-form" action="/add_word" method="post">
         <h1>Add a New Word</h1>
         <label for="new_word">Your New Word</label>
-        <input class="p-1 el new_word" autofocus type="text" name="new_word" id="new_word" placeholder="New Word">
-        
+        <input class="p-1 el new_word" autofocus type="text" name="new_word" id="new_word" placeholder="New Word" value="{{original_word}}">
+            
+            <button class="p-3 word_translation_button btn btn-success" form="word_translation">Translate Word</button>
+
         <label for="part_of_speech">Type of Word</label>
         <select class="p-1 el" name="part_of_speech" id="part_of_speech" placeholder="What part of speech is your word?" required>
            <option value="verb">verb</option>
