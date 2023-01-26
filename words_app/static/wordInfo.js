@@ -1,26 +1,35 @@
 const wordFromCard = document.querySelectorAll(".card-header")
 const definitionDiv = document.querySelector(".definitionDiv")
 const pronunciationDiv = document.querySelector(".pronunciationDiv")
-const synonymDiv = document.querySelector(".synonymDiv")
 
 class WordInfo{
 
-    static wordDef;
+    wordDef;
     
     static resetWordInfoDivs(){
         definitionDiv.textContent = ""
         pronunciationDiv.textContent = ""
-        synonymDiv.textContent = ""
     }
 
     static getWordInfo(word){
         fetch(`https://api.dictionaryapi.dev/api/v2/entries/en/${word}`)
         .then((response) => response.json())
         .then((data) => {
-            WordInfo.wordDef = data
-            WordInfo.showWordInfo(WordInfo.wordDef)
+            this.wordDef = data
+            WordInfo.showWordInfo(this.wordDef)
         })
         .catch((err) => console.log(err));
+    }
+
+    static removeAllBgColors(elements){
+        for(let element of elements){
+            element.style.removeProperty("background-color")
+        }
+    }
+   
+    static showWordInfo(wordDef){
+        definitionDiv.textContent = `Definition: ${wordDef[0].meanings[0].definitions[0].definition}`
+        pronunciationDiv.textContent = `Pronunciation: ${wordDef[0].phonetic}`
     }
 
     static toggleWordInfo(){
@@ -39,18 +48,6 @@ class WordInfo{
                 }
             })
         }   
-    }
-
-    static removeAllBgColors(elements){
-        for(let element of elements){
-            element.style.removeProperty("background-color")
-        }
-    }
-   
-    static showWordInfo(wordDef){
-        definitionDiv.textContent = `Definition: ${wordDef[0].meanings[0].definitions[0].definition}`
-        pronunciationDiv.textContent = `Pronunciation: ${wordDef[0].phonetic}`
-        synonymDiv.textContent = `Synonym(s): ${wordDef[0].meanings[0].definitions[0].synonyms}`
     }
 }
 
