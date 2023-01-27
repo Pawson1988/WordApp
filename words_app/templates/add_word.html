@@ -18,9 +18,9 @@
         <!-- new word section -->
         <label for="new_word">Your New Word</label>
         {% if word_info and word_info.word_to_translate %}
-        <input class="p-1 el new_word" autofocus type="text" name="new_word" id="new_word" placeholder="New Word" value="{{word_info.word_to_translate}}">
+        <input class="p-1 el new_word" required autofocus type="text" name="new_word" id="new_word" placeholder="New Word" value="{{word_info.word_to_translate}}">
         {% else %}
-        <input class="p-1 el new_word" autofocus type="text" name="new_word" id="new_word" placeholder="New Word">
+        <input class="p-1 el new_word" required autofocus type="text" name="new_word" id="new_word" placeholder="New Word">
         {% endif %}
             
             <!-- translation button -->
@@ -28,32 +28,42 @@
 
         <!-- part of speech section -->
         <label for="part_of_speech">Type of Word</label>
-        <select class="p-1 el part_of_speech" name="part_of_speech" id="part_of_speech" placeholder="What part of speech is your word?" required value="
         {% if word_info %}
-        {{word_info.part_of_speech}}
-        {% endif %}">
+        <select class="p-1 el part_of_speech" name="part_of_speech" id="part_of_speech" placeholder="What part of speech is your word?" required>
+           <option value="{{word_info.part_of_speech}}" hidden selected>{{word_info.part_of_speech}}</option>
            <option value="verb">verb</option>
            <option value="adjective">adjective</option>
            <option value="adverb">adverb</option>
            <option value="noun">noun</option>
            <option value="pronoun">pronoun</option>
         </select>
+        {% else %}
+        <select class="p-1 el part_of_speech" name="part_of_speech" id="part_of_speech" placeholder="What part of speech is your word?" required>
+            
+            <option value="verb">verb</option>
+            <option value="adjective">adjective</option>
+            <option value="adverb">adverb</option>
+            <option value="noun">noun</option>
+            <option value="pronoun">pronoun</option>
+         </select>
+        {% endif %}
+
 
         <!-- Word translation section -->
         <label for="translation">Translation</label>
         {% if word_info and word_info.translated_word %}
-        <input class="p-1 el" type="text" name="translation" id="translation" placeholder="What is the translation?" value="{{word_info.translated_word}}">
+        <input class="p-1 el" required type="text" name="translation" id="translation" placeholder="What is the translation?" value="{{word_info.translated_word}}">
         {% else %}
-        <input class="p-1 el" type="text" name="translation" id="translation" placeholder="What is the translation?">
+        <input class="p-1 el" required type="text" name="translation" id="translation" placeholder="What is the translation?">
         {% endif %}
 
         <!-- example sentence section -->
         <label for="sentence">Phrase with the Word</label>
         {% if word_info %}
-        <textarea class="p-1 el add_word_sentence" name="sentence" id="sentence" cols="30" rows="10" placeholder="Type an example phrase using the word here">{{word_info.sentence}}
+        <textarea class="p-1 el add_word_sentence" required name="sentence" id="sentence" cols="30" rows="10" placeholder="Type an example phrase using the word here">{{word_info.sentence}}
         </textarea> 
         {% else %}
-        <textarea class="p-1 el add_word_sentence" name="sentence" id="sentence" cols="30" rows="10" placeholder="Type an example phrase using the word here">
+        <textarea class="p-1 el add_word_sentence" required name="sentence" id="sentence" cols="30" rows="10" placeholder="Type an example phrase using the word here">
         </textarea> 
         {% endif %}
         
