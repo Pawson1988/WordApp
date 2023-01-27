@@ -86,6 +86,10 @@ span {
     text-align: left;
 }
 
+.word-limit-warning {
+    color: rgb(231, 28, 214);
+}
+
 .add-word-form h1 {
     margin-bottom: 3rem;
 }

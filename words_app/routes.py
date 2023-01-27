@@ -64,6 +64,8 @@ def login():
             session.permanent = True
             session['username'] = username
             session['id'] = current_user.user_id 
+            session['current_word_count'] = len(Word.query.filter_by(user_id = session['id']).all())
+            print(session['current_word_count'])
             return redirect(session['url'])
         else:
             return redirect("/login")
@@ -95,6 +97,11 @@ def add_word():
 
     # get words from HTML form. 
     if request.method == "POST":
+
+        words_length = len(Word.query.filter_by(user_id = session['id']).all())
+        if words_length >= 10:
+            return redirect("/show_words")
+
         timestamp = "%s - %s" % (get_date(), get_time())
         new_word = request.form.get("new_word")
         user_id = session['id']
@@ -109,6 +116,10 @@ def add_word():
         db.session.add(new_word_entry)
         db.session.commit()
 
+        # set word count after adding new word to keep make sure they are under the word limit
+        session['current_word_count'] = len(Word.query.filter_by(user_id = session['id']).all())
+        print(session['current_word_count'])
+
         return redirect("/show_words")
 
 # get word from delete button and delete from database
@@ -121,7 +132,6 @@ def delete_word(id):
 
 @app.route("/word_translation", methods=["POST"])
 def word_translation():
-    translated_word = "translated_word"
     word_info = {}
     if request.method == "POST":
         print(request.form)

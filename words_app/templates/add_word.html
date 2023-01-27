@@ -13,7 +13,12 @@
     
     <!-- main form for adding word -->
     <form class="add-word-form" action="/add_word" method="post">
+
         <h1>Add a New Word</h1>
+
+        {% if session['current_word_count'] >= 10 %}
+        <h3 class="word-limit-warning">You have 10 words, please delete one.</h3>
+        {% endif %}
 
         <!-- new word section -->
         <label for="new_word">Your New Word</label>
