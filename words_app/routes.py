@@ -1,8 +1,6 @@
 from words_app import app, db
 from words_app.models import User, Word
-from flask import render_template, request, redirect, session
-import time
-import asyncio
+from flask import render_template, request, redirect, session, abort
 from helpers.translation_request import translate_word
 from helpers.date_and_time import get_date, get_time
 
