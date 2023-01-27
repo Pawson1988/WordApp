@@ -21,3 +21,4 @@ app.config['SESSION_TYPE'] = "filesystem"
 Session(app)
 
 from words_app import routes
+from words_app import error_handlers
