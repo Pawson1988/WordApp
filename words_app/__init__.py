@@ -20,5 +20,6 @@ app.config['SESSION_TYPE'] = "filesystem"
 
 Session(app)
 
-from words_app import routes
-from words_app import error_handlers
+
+# import all the routes after initiating app and setting config
+from words_app import login_routes, words_routes, error_handlers, admin_routes, translation_routes
