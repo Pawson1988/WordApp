@@ -12,19 +12,23 @@
         <p>You are currently logged in as {{session['username'].capitalize()}}</p>
 
     {% endif %}
-    <div class="row">
-    <form class="form-control d-flex justify-content-center align-items-center flex-column" action="login" method="post">
-        <div class="col mb-3">
-            <label class="form-label" for="username">Username</label>
-            <input class="form-control" type="text" name="username" id="username">
-        </div>
-        <div class="col mb-3">
-            <label class="form-label" for="password">Password</label>
-            <input class="form-control" type="password" name="password" id="password">
-        </div>
-        <button class="btn btn-primary">login</button>
-    </form>
-</div>
+    <div class="row d-flex justify-content-center align-items-center flex-column">
+        <form class="form-control d-flex justify-content-center align-items-center flex-column" action="login" method="post">
+            <div class="col mb-3">
+                <label class="form-label" for="username">Username</label>
+                <input class="form-control" type="text" name="username" id="username">
+            </div>
+            <div class="col mb-3">
+                <label class="form-label" for="password">Password</label>
+                <input class="form-control" type="password" name="password" id="password">
+            </div>
+            <button class="btn btn-primary">login</button>
+        </form>
+
+        {% if warning %}
+        <div class="text-warning" style="font-size: 1.5rem;">{{warning}}</div>
+        {% endif %}
+    </div>
 </div>
 
 
