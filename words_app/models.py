@@ -2,6 +2,7 @@ from words_app import app
 from words_app import db
 from helpers.default_data import user_accounts, default_words
 
+# create DB model for User
 class User(db.Model):
     user_id = db.Column(db.Integer, primary_key=True)
     username = db.Column(db.String(20))
@@ -10,7 +11,7 @@ class User(db.Model):
     def __repr__(self):
         return f'username: {self.username}'
 
-# Create the model for the DB
+# Create the model for the word DB
 class Word(db.Model):
     id = db.Column(db.Integer, primary_key=True)
     timestamp = db.Column(db.String)
