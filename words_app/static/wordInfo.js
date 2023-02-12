@@ -1,24 +1,41 @@
-const wordFromCard = document.querySelectorAll(".card-header")
+
 const definitionDiv = document.querySelector(".definitionDiv")
 const pronunciationDiv = document.querySelector(".pronunciationDiv")
+const wordFromCard = document.querySelectorAll(".card-header")
+
+async function fetchWithTimeout(resource, options = {}) {
+    const { timeout = 8000 } = options;
+    
+    const controller = new AbortController();
+    const id = setTimeout(() => controller.abort(), timeout);
+    const response = await fetch(resource, {
+      ...options,
+      signal: controller.signal  
+    });
+    clearTimeout(id);
+    return response;
+}
 
 class WordInfo{
-
     wordDef;
-    
+
     static resetWordInfoDivs(){
-        definitionDiv.textContent = ""
+        definitionDiv.textContent = "" 
         pronunciationDiv.textContent = ""
     }
 
-    static getWordInfo(word){
-        fetch(`https://api.dictionaryapi.dev/api/v2/entries/en/${word}`)
+    static async getWordInfo(word){
+        //fetch(``)
+        fetchWithTimeout(`https://api.dictionaryapi.dev/api/v2/entries/en/${word}`, {timeout: 1500})
         .then((response) => response.json())
         .then((data) => {
             this.wordDef = data
             WordInfo.showWordInfo(this.wordDef)
         })
-        .catch((err) => console.log(err));
+        .catch((err) => {
+          console.log(err)
+          WordInfo.showWordInfo(null)
+        });
     }
 
     static removeAllBgColors(elements){
@@ -28,8 +45,14 @@ class WordInfo{
     }
    
     static showWordInfo(wordDef){
-        definitionDiv.textContent = `Definition: ${wordDef[0].meanings[0].definitions[0].definition}`
-        pronunciationDiv.textContent = `Pronunciation: ${wordDef[0].phonetic}`
+        if(wordDef != null){
+            definitionDiv.textContent =  `Definition: ${wordDef[0]?.meanings[0].definitions[0].definition}`
+            pronunciationDiv.textContent =  `Pronunciation: ${wordDef[0]?.phonetic}` 
+        } else {
+            definitionDiv.textContent = `Not Working`
+            pronunciationDiv.textContent = `Not Working`
+        }
+        
     }
 
     static toggleWordInfo(){
