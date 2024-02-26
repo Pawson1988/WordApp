@@ -2,4 +2,4 @@ flask_session/
 instance/
 .env 
 errorlog.txt
-words_app?__pycache__
+words_app/__pycache__
