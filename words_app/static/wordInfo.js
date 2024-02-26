@@ -17,6 +17,7 @@ async function fetchWithTimeout(resource, options = {}) {
 }
 
 class WordInfo{
+    
     wordDef;
 
     static resetWordInfoDivs(){
